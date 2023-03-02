@@ -1,5 +1,5 @@
 package hw1;
-
+import java.util.Arrays;
 public class Node {
     int robot_coordinates[];
     int goal_coordinates[];
@@ -91,6 +91,10 @@ public class Node {
         return true;
 
 
+    }
+
+    public boolean isSolved(){
+        return Arrays.equals(this.robot_coordinates, this.goal_coordinates);
     }
 
 }

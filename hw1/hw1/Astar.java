@@ -2,8 +2,59 @@ package hw1;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.PriorityQueue; 
+
 
 class Astar{
+
+    public static void astar(Node root){
+        // Comparator class to compare the heuristic value 
+        // while adding the node in PriorityQueue 
+        class NodeComparator implements Comparator<Node> { 
+            public int compare(Node n1, Node n2) 
+            { 
+                if (n1.total_heuristics < n2.total_heuristics) 
+                    return -1; 
+                if (n1.total_heuristics > n2.total_heuristics) 
+                    return 1; 
+                return 0; 
+            } 
+        } 
+    
+
+        // PriorityQueue to store the nodes 
+        PriorityQueue<Node> pq = new PriorityQueue<Node>(new NodeComparator());
+        Comparator<Node> heuristicComparator = Comparator.comparing(node -> node.robot_coordinates, Node::compareTo).thenComparingDouble(node -> node.total_heuristics);
+        TreeSet<Node> visitedNodes = new TreeSet<>(heuristicComparator);
+        Set<Node> solutions = new HashSet<>();
+        pq.add(root);
+
+        while(pq.size() > 0) {
+            Node currNode = pq.poll();
+            if(!currNode.isSolved()){
+                currNode.generate_children();
+                for(Node child : currNode.children){
+                    if (child != null)
+                        if(visitedNodes.ceiling(child) != null)
+                         if(child.total_heuristics < visitedNodes.ceiling(child).total_heuristics)
+                            pq.add(child);
+                }
+            }
+            else{
+                solutions.add(currNode);
+            }
+            visitedNodes.add(currNode);
+        }
+        System.out.println(solutions.toString());
+    }
+
+
+
+
     public static void main(String[] args){
         // Declare variables for the table size
         int rows;
@@ -54,6 +105,7 @@ class Astar{
         
         Grid grid = new Grid(table, new int[]{startY, startX}, new int[]{goalY, goalX});
         Node root = new Node(grid);
+
         
     }
     
