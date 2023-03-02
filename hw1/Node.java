@@ -35,6 +35,7 @@ public class Node {
         euclidean_heuristics = calculate_euclidean_heuristics();
         manhattan_heuristics = calculate_manhattan_heuristics();
         total_heuristics = euclidean_heuristics+manhattan_heuristics+generation;
+        children = new Node[4];
 
 
     }

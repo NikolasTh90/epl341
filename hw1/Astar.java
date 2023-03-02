@@ -52,9 +52,9 @@ class Astar{
             System.out.println("File not found!");
         }
         
-        Grid root = new Grid(table, new int[]{startY, startX}, new int[]{goalY, goalX});
+        Grid grid = new Grid(table, new int[]{startY, startX}, new int[]{goalY, goalX});
+        Node root = new Node(grid);
         
-
     }
     
 }
