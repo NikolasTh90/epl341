@@ -11,17 +11,19 @@ import java.util.PriorityQueue;
 
 class Astar{
 
-    public static void astar(Node root){
+    public static void astar_euclidean(Node root){
         // Comparator class to compare the heuristic value 
         // while adding the node in PriorityQueue 
         class NodeComparator implements Comparator<Node> { 
             public int compare(Node n1, Node n2) 
             { 
-                if (n1.total_heuristics < n2.total_heuristics) 
-                    return -1; 
-                if (n1.total_heuristics > n2.total_heuristics) 
-                    return 1; 
-                return 0; 
+                // if (n1.total_heuristics < n2.total_heuristics) 
+                //     return -1; 
+                // if (n1.total_heuristics > n2.total_heuristics) 
+                //     return 1; 
+                // return 0; 
+
+                return Double.compare(n1.euclidean_heuristics, n2.euclidean_heuristics);
             } 
         } 
     
