@@ -35,7 +35,7 @@
       )
       (not (in_vehicle ?p ?v)) ; check that the package is not already in the vehicle
       (not (is_loaded_vehicle ?v)) ; check that the vehicle does not already carry a package
-      
+
     )
     :effect (and
       (in_vehicle ?p ?v) ; put the package in the vehicle
@@ -72,7 +72,7 @@
     )
   )
   (:action move_train
-    :parameters (?t - train ?l1 - location ?l2 - location)
+    :parameters (?t - train_machine ?l1 - location ?l2 - location)
     :precondition (and
       (at ?t ?l1) ; check that the train is in the departure location
       ; (forall
@@ -89,23 +89,30 @@
       ; )
     )
     :effect (and
-      (not (at ?t ?l1)) ;  set that the train is not in the departing location
-      (at ?t ?l2) ;  set that the train is in the destination location
+      (not (at ?t ?l1))
+      (at ?t ?l2)
       (forall
-        (?w - wagon) ; set all wagons that are connected to the train to be in the destination location
-        (when(connected_to_train ?w ?t)
-          (forall ;  update the location of the packages carries in the wagons
-            (?p - package)
-            (when
-              (in_vehicle ?p ?w)
-              (at ?p ?l2)
-              (not(at ?p ?l1))
+        (?w - wagon)
+        (forall
+          (?p - package)
+          (when
+            (and (connected_to_train ?w ?t) (in_vehicle ?p ?w))
+            (and (at ?p ?l2)
+              (not (at ?p ?l1))
             )
           )
-          (not(at ?w ?l1))
-          (at ?w ?l2)
         )
       )
+      (forall
+        (?w - wagon)
+        (when (connected_to_train ?w ?t)
+          (and (at ?w ?l2)
+              (not (at ?w ?l1))
+            )
+        )
+      )
+
+
     )
   )
   (:action move_ship
@@ -149,8 +156,9 @@
         (?p - package) ; update the location of the packages carried by the ship
         (when
           (in_vehicle ?p ?s)
-          (at ?p ?h2)
+          (and(at ?p ?h2)
           (not(at ?p ?h1)))
+        )
       )
     )
   )
@@ -196,8 +204,9 @@
         (?p - package)
         (when
           (in_vehicle ?p ?t)
-          (at ?p ?l2)
-          (not (at ?p ?l1))
+          (and(at ?p ?l2)
+            (not (at ?p ?l1))
+          )
         )
       )
     )
@@ -214,9 +223,11 @@
           (at ?w ?l)
         )
       )
-      (not (connected_to_train ?w ?t)) ; check that the wagon is not already connected to the train_machine
 
+        (not (connected_to_train ?w ?t)) ; check that the wagon is not already connected to any train_machine
+      
     )
+      
     :effect (and
       (connected_to_train ?w ?t) ; connect the wagon to the train_machine
     )
@@ -225,7 +236,7 @@
   (:action disconnect_wagon
     :parameters (?t - train_machine ?w - wagon)
     :precondition (and
-      
+
       (connected_to_train ?w ?t) ; check that the wagon is connected to the train_machine
 
     )
@@ -233,6 +244,5 @@
       (not(connected_to_train ?w ?t)) ; disconnect the wagon from the train_machine
     )
   )
-
 
 )

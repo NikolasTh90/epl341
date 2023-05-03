@@ -1,10 +1,10 @@
-(define (problem problem_hw3_ex1)
+(define (problem problem-hw3-ex1)
     (:domain hw3)
     (:objects
         Spain Italy - country
         Barcelona Madrid Rome - city
         BarcaHB MadHB RomeHB - harbor
-        MadridST RomeST - station
+        MadridST RomeST - train-station
         BarcaWH BarcaWH2 MadWH RomeWH - warehouse
         ship1 ship2 - ship
         truck1 truck2 - truck
@@ -39,6 +39,7 @@
         (connected_to_train wagon2 tm1)
         (connected_to_train wagon3 tm2)
         (connected_to_train wagon4 tm2)
+
         (in_city BarcaHB Barcelona)
         (in_city BarcaWH Barcelona)
         (in_city BarcaWH2 Barcelona)
@@ -51,6 +52,10 @@
         (in_country Barcelona Spain)
         (in_country Madrid Spain)
         (in_country Rome Italy)
+
+
+
+    
         
 
     )
