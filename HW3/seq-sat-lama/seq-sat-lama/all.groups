@@ -1,0 +1,61 @@
+begin_groups
+13
+group
+1
+2 1 at 2 the-gold sq-1-3 
+group
+2
+2 1 at 2 the-gold sq-1-3 
+2 0 have 2 agent the-gold 
+group
+5
+0 3 at 2 agent sq-1-1 
+0 2 at 2 agent sq-1-3 
+0 0 at 2 agent sq-2-1 
+0 1 at 2 agent sq-2-2 
+0 4 at 2 agent sq-2-3 
+group
+6
+1 1 at 2 wumpus sq-1-1 
+1 3 at 2 wumpus sq-1-3 
+1 0 at 2 wumpus sq-2-1 
+1 4 at 2 wumpus sq-2-2 
+1 5 at 2 wumpus sq-2-3 
+1 2 have 2 agent wumpus 
+group
+1
+9 0 have 2 agent the-arrow 
+group
+6
+0 3 at 2 agent sq-1-1 
+0 2 at 2 agent sq-1-3 
+0 0 at 2 agent sq-2-1 
+0 1 at 2 agent sq-2-2 
+0 4 at 2 agent sq-2-3 
+0 5 have 2 agent agent 
+group
+5
+1 1 at 2 wumpus sq-1-1 
+1 3 at 2 wumpus sq-1-3 
+1 0 at 2 wumpus sq-2-1 
+1 4 at 2 wumpus sq-2-2 
+1 5 at 2 wumpus sq-2-3 
+group
+1
+3 0 wumpus-in 1 sq-1-3 
+group
+1
+4 0 wumpus-in 1 sq-1-1 
+group
+1
+5 0 dead 1 wumpus 
+group
+1
+6 0 wumpus-in 1 sq-2-2 
+group
+1
+7 0 wumpus-in 1 sq-2-1 
+group
+1
+8 0 wumpus-in 1 sq-2-3 
+end_groups
